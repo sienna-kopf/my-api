@@ -100,4 +100,20 @@ RSpec.describe "Items API ", type: :request do
 
     expect(new_item[:data][:attributes]).to have_key(:name)
   end
+
+  it "can destroy an item" do
+    item = create(:item)
+
+    expect(Item.count).to eq(1)
+
+    delete "/api/v1/items/#{item.id}"
+
+    expect(response).to be_successful
+
+    expect(Item.count).to eq(0)
+    expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+
+    deleted_item = JSON.parse(response.body, symbolize_names: true)
+    expect(deleted_item[:data]).to eq([])
+  end
 end
