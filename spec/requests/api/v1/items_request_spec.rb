@@ -55,7 +55,7 @@ RSpec.describe "Items API ", type: :request do
     expect(item[:data][:attributes]).to have_key(:name)
   end
 
-  it "can create a new item and redirects to the index page" do
+  it "can create a new item" do
     merchant_id = create(:merchant).id
 
     headers = { "CONTENT_TYPE" => "application/json"}
