@@ -77,4 +77,27 @@ RSpec.describe "Items API ", type: :request do
 
     expect(new_item[:data][:attributes]).to have_key(:name)
   end
+
+  it "can update an existing item" do
+    id = create(:item).id
+
+    headers = { "CONTENT_TYPE" => "application/json"}
+    patch "/api/v1/items/#{id}", :params => {
+      item: {
+        name: "Tennis Ball"
+        }
+      }
+
+    expect(response).to be_successful
+    item = Item.find_by(id: id)
+    expect(item.name).to_not eq("Stuffed Giraffe")
+    expect(item.name).to eq("Tennis Ball")
+
+    new_item = JSON.parse(response.body, symbolize_names: true)
+    expect(new_item[:data]).to have_key(:id)
+    expect(new_item[:data]).to have_key(:type)
+    expect(new_item[:data]).to have_key(:attributes)
+
+    expect(new_item[:data][:attributes]).to have_key(:name)
+  end
 end
