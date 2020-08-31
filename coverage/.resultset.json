@@ -10,6 +10,10 @@
           2,
           2,
           null,
+          null,
+          1,
+          2,
+          null,
           null
         ]
       },
@@ -302,11 +306,37 @@
         "lines": [
           1,
           1,
+          1,
           null
         ]
       },
       "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/application_record.rb": {
         "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/spec/models/invoice_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          2,
+          null,
+          null,
+          1,
+          2,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/invoice.rb": {
+        "lines": [
+          1,
+          1,
           1,
           1,
           null
@@ -348,6 +378,7 @@
           null,
           1,
           2,
+          2,
           null,
           null
         ]
@@ -357,10 +388,11 @@
           1,
           1,
           1,
+          1,
           null
         ]
       }
     },
-    "timestamp": 1598903461
+    "timestamp": 1598904083
   }
 }
