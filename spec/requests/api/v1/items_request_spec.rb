@@ -112,8 +112,5 @@ RSpec.describe "Items API ", type: :request do
 
     expect(Item.count).to eq(0)
     expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
-
-    deleted_item = JSON.parse(response.body, symbolize_names: true)
-    expect(deleted_item[:data]).to eq([])
   end
 end
