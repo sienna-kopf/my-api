@@ -47,7 +47,7 @@ namespace :seed_from_csv do
     end
     puts("Merchants imported")
   end
-  
+
   desc "Seed items"
   task items: :environment do
     file = "db/csvs/items.csv"
@@ -107,5 +107,5 @@ namespace :seed_from_csv do
     puts("Transactions imported")
   end
 
-  task :all => [:rebuild, :customers, :invoice_items, :invoices, :items, :merchants, :transactions ]
+  task :all => [:destroy_data, :rebuild, :customers, :invoice_items, :invoices, :items, :merchants, :transactions ]
 end
