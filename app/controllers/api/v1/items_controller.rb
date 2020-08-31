@@ -16,6 +16,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def destroy
+    render json: Item.delete(params[:id])
   end
 
   private
