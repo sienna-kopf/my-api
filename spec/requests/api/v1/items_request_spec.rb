@@ -36,4 +36,32 @@ RSpec.describe "Items API ", type: :request do
 
     expect(item[:data][:attributes]).to have_key(:name)
   end
+
+  it "can get one item by id" do
+    id =  create(:item).id
+
+    get "/api/v1/items/#{id}"
+
+    expect(response).to be_successful
+
+    item = JSON.parse(response.body, symbolize_names: true)
+
+    expect(item[:data][:id]).to eq("#{id}")
+
+    expect(item[:data]).to have_key(:id)
+    expect(item[:data]).to have_key(:type)
+    expect(item[:data]).to have_key(:attributes)
+
+    expect(item[:data][:attributes]).to have_key(:name)
+  end
+
+  it "can create a new item" do
+    merchant = create(:merchant)
+    item_params = { name: "Toy Plane", description: "Fly your own airplane", unit_price: 22.35, merchant: merchant }
+
+    post "/api/v1/items", params: {item: item_params}
+
+    expect(response).to be_successful
+    expect(item.name).to eq(item_params[:name])
+  end
 end
