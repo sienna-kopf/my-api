@@ -60,27 +60,27 @@ RSpec.describe "Merchants API", type: :request do
     expect(new_merchant[:data][:attributes]).to have_key(:name)
   end
 
-  xit "can update an existing item" do
-    id = create(:item).id
+  it "can update an existing item" do
+    merchant_id = create(:merchant).id
 
     headers = { "CONTENT_TYPE" => "application/json"}
-    patch "/api/v1/items/#{id}", :params => {
-      item: {
-        name: "Tennis Ball"
+    patch "/api/v1/merchants/#{merchant_id}", :params => {
+      merchant: {
+        name: "Hello Kitty Kingdom"
         }
       }
 
     expect(response).to be_successful
-    item = Item.find_by(id: id)
-    expect(item.name).to_not eq("Stuffed Giraffe")
-    expect(item.name).to eq("Tennis Ball")
+    merchant = Merchant.find_by(id: merchant_id)
+    expect(merchant.name).to_not eq("Josh's Dog Shop")
+    expect(merchant.name).to eq("Hello Kitty Kingdom")
 
-    new_item = JSON.parse(response.body, symbolize_names: true)
-    expect(new_item[:data]).to have_key(:id)
-    expect(new_item[:data]).to have_key(:type)
-    expect(new_item[:data]).to have_key(:attributes)
+    updated_merchant = JSON.parse(response.body, symbolize_names: true)
+    expect(updated_merchant[:data]).to have_key(:id)
+    expect(updated_merchant[:data]).to have_key(:type)
+    expect(updated_merchant[:data]).to have_key(:attributes)
 
-    expect(new_item[:data][:attributes]).to have_key(:name)
+    expect(updated_merchant[:data][:attributes]).to have_key(:name)
   end
 
   xit "can destroy an item" do
