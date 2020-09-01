@@ -114,5 +114,7 @@ RSpec.describe "Merchants API", type: :request do
     expect(merchant_items[:data][0]).to have_key(:attributes)
 
     expect(merchant_items[:data][0][:attributes]).to have_key(:name)
+    expect(merchant_items[:data][0][:attributes]).to have_key(:description)
+    expect(merchant_items[:data][0][:attributes]).to have_key(:unit_price)
   end
 end

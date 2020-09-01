@@ -17,6 +17,8 @@ RSpec.describe "Items API ", type: :request do
     expect(items[:data][0]).to have_key(:attributes)
 
     expect(items[:data][0][:attributes]).to have_key(:name)
+    expect(items[:data][0][:attributes]).to have_key(:description)
+    expect(items[:data][0][:attributes]).to have_key(:unit_price)
   end
 
   it "can get one item by id" do
@@ -35,6 +37,8 @@ RSpec.describe "Items API ", type: :request do
     expect(item[:data]).to have_key(:attributes)
 
     expect(item[:data][:attributes]).to have_key(:name)
+    expect(item[:data][:attributes]).to have_key(:description)
+    expect(item[:data][:attributes]).to have_key(:unit_price)
   end
 
   it "can create a new item" do
@@ -58,6 +62,8 @@ RSpec.describe "Items API ", type: :request do
     expect(new_item[:data]).to have_key(:attributes)
 
     expect(new_item[:data][:attributes]).to have_key(:name)
+    expect(new_item[:data][:attributes]).to have_key(:description)
+    expect(new_item[:data][:attributes]).to have_key(:unit_price)
   end
 
   it "can update an existing item" do
@@ -75,12 +81,14 @@ RSpec.describe "Items API ", type: :request do
     expect(item.name).to_not eq("Stuffed Giraffe")
     expect(item.name).to eq("Tennis Ball")
 
-    new_item = JSON.parse(response.body, symbolize_names: true)
-    expect(new_item[:data]).to have_key(:id)
-    expect(new_item[:data]).to have_key(:type)
-    expect(new_item[:data]).to have_key(:attributes)
+    updated_item = JSON.parse(response.body, symbolize_names: true)
+    expect(updated_item[:data]).to have_key(:id)
+    expect(updated_item[:data]).to have_key(:type)
+    expect(updated_item[:data]).to have_key(:attributes)
 
-    expect(new_item[:data][:attributes]).to have_key(:name)
+    expect(updated_item[:data][:attributes]).to have_key(:name)
+    expect(updated_item[:data][:attributes]).to have_key(:description)
+    expect(updated_item[:data][:attributes]).to have_key(:unit_price)
   end
 
   it "can destroy an item" do
@@ -96,5 +104,26 @@ RSpec.describe "Items API ", type: :request do
     expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
 
     expect(response.status).to eq(204)
+  end
+
+  xit "sends a list of merchants associated with a specific item" do
+    merchant = create(:merchant)
+    create(:item, merchant: merchant)
+    create(:item, merchant: merchant)
+    create(:item, merchant: merchant)
+
+    get "/api/v1/merchants/#{merchant.id}/items"
+
+    expect(response).to be_successful
+
+    merchant_items = JSON.parse(response.body, symbolize_names: true)
+
+    expect(merchant_items[:data].count).to eq(3)
+
+    expect(merchant_items[:data][0]).to have_key(:id)
+    expect(merchant_items[:data][0]).to have_key(:type)
+    expect(merchant_items[:data][0]).to have_key(:attributes)
+
+    expect(merchant_items[:data][0][:attributes]).to have_key(:name)
   end
 end
