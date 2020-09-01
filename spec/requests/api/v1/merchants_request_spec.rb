@@ -117,4 +117,24 @@ RSpec.describe "Merchants API", type: :request do
     expect(merchant_items[:data][0][:attributes]).to have_key(:description)
     expect(merchant_items[:data][0][:attributes]).to have_key(:unit_price)
   end
+
+  it "returns items as part of relationships with specific merchant call" do
+    merchant = create(:merchant)
+    create(:item, merchant: merchant)
+    create(:item, merchant: merchant)
+    create(:item, merchant: merchant)
+
+    get "/api/v1/merchants/#{merchant.id}"
+
+    expect(response).to be_successful
+
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    expect(merchant[:data]).to have_key(:relationships)
+
+    expect(merchant[:data][:relationships]).to have_key(:items)
+    expect(merchant[:data][:relationships][:items][:data].count).to eq(3)
+    expect(merchant[:data][:relationships][:items][:data][0]).to have_key(:id)
+    expect(merchant[:data][:relationships][:items][:data][0]).to have_key(:type)
+  end
 end
