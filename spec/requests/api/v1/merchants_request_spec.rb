@@ -2,9 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "Merchants API", type: :request do
 
-  # merchant = create(:merchant)
-  # item_1 = create(:item, merchant: merchant )
-  #   #pass specific merchant id as argument
   it "sends a list of merchants" do
     create_list(:merchant, 3)
 
@@ -96,5 +93,48 @@ RSpec.describe "Merchants API", type: :request do
     expect{Merchant.find(merchant.id)}.to raise_error(ActiveRecord::RecordNotFound)
 
     expect(response.status).to eq(204)
+  end
+
+  it "sends a list of items associated with that merchant" do
+    merchant = create(:merchant)
+    create(:item, merchant: merchant)
+    create(:item, merchant: merchant)
+    create(:item, merchant: merchant)
+
+    get "/api/v1/merchants/#{merchant.id}/items"
+
+    expect(response).to be_successful
+
+    merchant_items = JSON.parse(response.body, symbolize_names: true)
+
+    expect(merchant_items[:data].count).to eq(3)
+
+    expect(merchant_items[:data][0]).to have_key(:id)
+    expect(merchant_items[:data][0]).to have_key(:type)
+    expect(merchant_items[:data][0]).to have_key(:attributes)
+
+    expect(merchant_items[:data][0][:attributes]).to have_key(:name)
+    expect(merchant_items[:data][0][:attributes]).to have_key(:description)
+    expect(merchant_items[:data][0][:attributes]).to have_key(:unit_price)
+  end
+
+  it "returns items as part of relationships with specific merchant call" do
+    merchant = create(:merchant)
+    create(:item, merchant: merchant)
+    create(:item, merchant: merchant)
+    create(:item, merchant: merchant)
+
+    get "/api/v1/merchants/#{merchant.id}"
+
+    expect(response).to be_successful
+
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+    expect(merchant[:data]).to have_key(:relationships)
+
+    expect(merchant[:data][:relationships]).to have_key(:items)
+    expect(merchant[:data][:relationships][:items][:data].count).to eq(3)
+    expect(merchant[:data][:relationships][:items][:data][0]).to have_key(:id)
+    expect(merchant[:data][:relationships][:items][:data][0]).to have_key(:type)
   end
 end
