@@ -129,6 +129,5 @@ RSpec.describe "Items API ", type: :request do
     expect(item_merchant[:data][:relationships][:items][:data].count).to eq(1)
     expect(item_merchant[:data][:relationships][:items][:data][0]).to have_key(:id)
     expect(item_merchant[:data][:relationships][:items][:data][0]).to have_key(:type)
-
   end
 end
