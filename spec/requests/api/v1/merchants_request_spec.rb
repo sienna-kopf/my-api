@@ -41,45 +41,23 @@ RSpec.describe "Merchants API", type: :request do
     expect(merchant[:data][:attributes]).to have_key(:name)
   end
 
-  xit "can get one item by id" do
-    id =  create(:item).id
-
-    get "/api/v1/items/#{id}"
-
-    expect(response).to be_successful
-
-    item = JSON.parse(response.body, symbolize_names: true)
-
-    expect(item[:data][:id]).to eq("#{id}")
-
-    expect(item[:data]).to have_key(:id)
-    expect(item[:data]).to have_key(:type)
-    expect(item[:data]).to have_key(:attributes)
-
-    expect(item[:data][:attributes]).to have_key(:name)
-  end
-
-  xit "can create a new item" do
-    merchant_id = create(:merchant).id
+  it "can create a new item" do
 
     headers = { "CONTENT_TYPE" => "application/json"}
-    post "/api/v1/items", :params => {
-      item: {
-        name: "Toy Plane",
-        description: "Fly your own airplane",
-        unit_price: 22.35,
-        merchant_id: merchant_id
+    post "/api/v1/merchants", :params => {
+      merchant: {
+        name: "Hello Kitty Kingdom"
         }
       }
 
     expect(response).to be_successful
 
-    new_item = JSON.parse(response.body, symbolize_names: true)
-    expect(new_item[:data]).to have_key(:id)
-    expect(new_item[:data]).to have_key(:type)
-    expect(new_item[:data]).to have_key(:attributes)
+    new_merchant = JSON.parse(response.body, symbolize_names: true)
+    expect(new_merchant[:data]).to have_key(:id)
+    expect(new_merchant[:data]).to have_key(:type)
+    expect(new_merchant[:data]).to have_key(:attributes)
 
-    expect(new_item[:data][:attributes]).to have_key(:name)
+    expect(new_merchant[:data][:attributes]).to have_key(:name)
   end
 
   xit "can update an existing item" do
