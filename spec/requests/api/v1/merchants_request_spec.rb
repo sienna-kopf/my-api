@@ -1,44 +1,127 @@
 require 'rails_helper'
 
-RSpec.describe "Api::V1::Merchants", type: :request do
+RSpec.describe "Merchants API", type: :request do
 
   # merchant = create(:merchant)
   # item_1 = create(:item, merchant: merchant )
   #   #pass specific merchant id as argument
+  it "sends a list of merchants" do
+    create_list(:merchant, 3)
 
-  describe "GET /index" do
-    it "returns http success" do
-      get "/api/v1/merchants/index"
-      expect(response).to have_http_status(:success)
-    end
+    get "/api/v1/merchants"
+
+    expect(response).to be_successful
+
+    merchants = JSON.parse(response.body, symbolize_names: true)
+
+    expect(merchants[:data].count).to eq(3)
+
+    expect(merchants[:data][0]).to have_key(:id)
+    expect(merchants[:data][0]).to have_key(:type)
+    expect(merchants[:data][0]).to have_key(:attributes)
+
+    expect(merchants[:data][0][:attributes]).to have_key(:name)
   end
 
-  describe "GET /show" do
-    it "returns http success" do
-      get "/api/v1/merchants/show"
-      expect(response).to have_http_status(:success)
-    end
+  xit "can get one item by id" do
+    id =  create(:item).id
+
+    get "/api/v1/items/#{id}"
+
+    expect(response).to be_successful
+
+    item = JSON.parse(response.body, symbolize_names: true)
+
+    expect(item[:data][:id]).to eq("#{id}")
+
+    expect(item[:data]).to have_key(:id)
+    expect(item[:data]).to have_key(:type)
+    expect(item[:data]).to have_key(:attributes)
+
+    expect(item[:data][:attributes]).to have_key(:name)
   end
 
-  describe "GET /create" do
-    it "returns http success" do
-      get "/api/v1/merchants/create"
-      expect(response).to have_http_status(:success)
-    end
+  xit "can get one item by id" do
+    id =  create(:item).id
+
+    get "/api/v1/items/#{id}"
+
+    expect(response).to be_successful
+
+    item = JSON.parse(response.body, symbolize_names: true)
+
+    expect(item[:data][:id]).to eq("#{id}")
+
+    expect(item[:data]).to have_key(:id)
+    expect(item[:data]).to have_key(:type)
+    expect(item[:data]).to have_key(:attributes)
+
+    expect(item[:data][:attributes]).to have_key(:name)
   end
 
-  describe "GET /update" do
-    it "returns http success" do
-      get "/api/v1/merchants/update"
-      expect(response).to have_http_status(:success)
-    end
+  xit "can create a new item" do
+    merchant_id = create(:merchant).id
+
+    headers = { "CONTENT_TYPE" => "application/json"}
+    post "/api/v1/items", :params => {
+      item: {
+        name: "Toy Plane",
+        description: "Fly your own airplane",
+        unit_price: 22.35,
+        merchant_id: merchant_id
+        }
+      }
+
+    expect(response).to be_successful
+
+    new_item = JSON.parse(response.body, symbolize_names: true)
+    expect(new_item[:data]).to have_key(:id)
+    expect(new_item[:data]).to have_key(:type)
+    expect(new_item[:data]).to have_key(:attributes)
+
+    expect(new_item[:data][:attributes]).to have_key(:name)
   end
 
-  describe "GET /destroy" do
-    it "returns http success" do
-      get "/api/v1/merchants/destroy"
-      expect(response).to have_http_status(:success)
-    end
+  xit "can update an existing item" do
+    id = create(:item).id
+
+    headers = { "CONTENT_TYPE" => "application/json"}
+    patch "/api/v1/items/#{id}", :params => {
+      item: {
+        name: "Tennis Ball"
+        }
+      }
+
+    expect(response).to be_successful
+    item = Item.find_by(id: id)
+    expect(item.name).to_not eq("Stuffed Giraffe")
+    expect(item.name).to eq("Tennis Ball")
+
+    new_item = JSON.parse(response.body, symbolize_names: true)
+    expect(new_item[:data]).to have_key(:id)
+    expect(new_item[:data]).to have_key(:type)
+    expect(new_item[:data]).to have_key(:attributes)
+
+    expect(new_item[:data][:attributes]).to have_key(:name)
   end
 
+  xit "can destroy an item" do
+    item = create(:item)
+
+    expect(Item.count).to eq(1)
+
+    delete "/api/v1/items/#{item.id}"
+
+    expect(response).to be_successful
+
+    expect(Item.count).to eq(0)
+    expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+
+    deleted_item = JSON.parse(response.body, symbolize_names: true)
+
+    expect(deleted_item[:data]).to have_key(:status)
+    expect(deleted_item[:data][:status]).to eq(204)
+    expect(deleted_item[:data]).to have_key(:error)
+    expect(deleted_item[:data]).to have_key(:exception)
+  end
 end

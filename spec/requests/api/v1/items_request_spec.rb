@@ -115,10 +115,9 @@ RSpec.describe "Items API ", type: :request do
 
     deleted_item = JSON.parse(response.body, symbolize_names: true)
 
-    expect(deleted_item[:data]).to have_key(:id)
-    expect(deleted_item[:data]).to have_key(:type)
-    expect(deleted_item[:data]).to have_key(:attributes)
-
-    expect(deleted_item[:data][:attributes]).to have_key(:name)
+    expect(deleted_item[:data]).to have_key(:status)
+    expect(deleted_item[:data][:status]).to eq(204)
+    expect(deleted_item[:data]).to have_key(:error)
+    expect(deleted_item[:data]).to have_key(:exception)
   end
 end
