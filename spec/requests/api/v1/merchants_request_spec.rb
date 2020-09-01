@@ -95,13 +95,6 @@ RSpec.describe "Merchants API", type: :request do
     expect(Merchant.count).to eq(0)
     expect{Merchant.find(merchant.id)}.to raise_error(ActiveRecord::RecordNotFound)
 
-    deleted_merchant = JSON.parse(response.body, symbolize_names: true)
-
-    binding.pry
-
-    expect(deleted_merchant[:data]).to have_key(:status)
-    expect(deleted_merchant[:data][:status]).to eq(204)
-    expect(deleted_merchant[:data]).to have_key(:error)
-    expect(deleted_merchant[:data]).to have_key(:exception)
+    expect(response.status).to eq(204)
   end
 end
