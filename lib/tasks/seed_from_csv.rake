@@ -1,22 +1,6 @@
 require 'csv'
 
 namespace :seed_from_csv do
-  desc "Destroy data / reset primary keys"
-  task destroy_data: :environment do
-    Customer.destroy_all
-    InvoiceItem.destroy_all
-    Invoice.destroy_all
-    Item.destroy_all
-    Merchant.destroy_all
-    Payment.destroy_all
-
-    ActiveRecord::Base.connection.tables.each do |t|
-      ActiveRecord::Base.connection.reset_pk_sequence!(t)
-    end
-
-    puts "All primary keys reset"
-  end
-
   desc "Rebuild development db"
   task rebuild: :environment do
     Rake::Task['db:drop'].execute
@@ -31,7 +15,7 @@ namespace :seed_from_csv do
 
     customers_csv.each do |row|
       row[:id] = row[:id].to_i
-      Customer.create(row)
+      Customer.create!(row)
     end
     puts("Customers imported")
   end
@@ -43,7 +27,7 @@ namespace :seed_from_csv do
 
     merchants_csv.each do |row|
       row[:id] = row[:id].to_i
-      Merchant.create(row)
+      Merchant.create!(row)
     end
     puts("Merchants imported")
   end
@@ -57,7 +41,7 @@ namespace :seed_from_csv do
       row[:id] = row[:id].to_i
       row[:unit_price] = (row[:unit_price].to_f / 100).round(2)
       row[:merchant_id] = row[:merchant_id].to_i
-      Item.create(row)
+      Item.create!(row)
     end
     puts("Items imported")
   end
@@ -71,7 +55,7 @@ namespace :seed_from_csv do
       row[:id] = row[:id].to_i
       row[:customer_id] = row[:customer_id].to_i
       row[:merchant_id] = row[:merchant_id].to_i
-      Invoice.create(row)
+      Invoice.create!(row)
     end
     puts("Invoices imported")
   end
@@ -88,7 +72,7 @@ namespace :seed_from_csv do
       row[:invoice_id] = row[:invoice_id].to_i
       row[:quantity] = row[:quantity].to_i
       row[:unit_price] = (row[:unit_price].to_f / 100).round(2)
-      InvoiceItem.create(row)
+      InvoiceItem.create!(row)
     end
     puts("Invoice Items imported")
   end
@@ -101,11 +85,10 @@ namespace :seed_from_csv do
     transactions_csv.each do |row|
       row[:id] = row[:id].to_i
       row[:invoice_id] = row[:invoice_id].to_i
-      row[:credit_card_expiration_date] = nil
-      Payment.create(row)
+      Payment.create!(row)
     end
     puts("Transactions imported")
   end
 
-  task :all => [:destroy_data, :rebuild, :customers, :invoice_items, :invoices, :items, :merchants, :transactions ]
+  task :all => [:rebuild, :merchants, :customers, :items, :invoices, :invoice_items, :transactions ]
 end

@@ -37,24 +37,6 @@ RSpec.describe "Items API ", type: :request do
     expect(item[:data][:attributes]).to have_key(:name)
   end
 
-  it "can get one item by id" do
-    id =  create(:item).id
-
-    get "/api/v1/items/#{id}"
-
-    expect(response).to be_successful
-
-    item = JSON.parse(response.body, symbolize_names: true)
-
-    expect(item[:data][:id]).to eq("#{id}")
-
-    expect(item[:data]).to have_key(:id)
-    expect(item[:data]).to have_key(:type)
-    expect(item[:data]).to have_key(:attributes)
-
-    expect(item[:data][:attributes]).to have_key(:name)
-  end
-
   it "can create a new item" do
     merchant_id = create(:merchant).id
 
@@ -113,12 +95,6 @@ RSpec.describe "Items API ", type: :request do
     expect(Item.count).to eq(0)
     expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
 
-    deleted_item = JSON.parse(response.body, symbolize_names: true)
-
-    expect(deleted_item[:data]).to have_key(:id)
-    expect(deleted_item[:data]).to have_key(:type)
-    expect(deleted_item[:data]).to have_key(:attributes)
-
-    expect(deleted_item[:data][:attributes]).to have_key(:name)
+    expect(response.status).to eq(204)
   end
 end
