@@ -16,7 +16,14 @@ class Api::V1::MerchantsController < ApplicationController
   end
 
   def destroy
-    render json: MerchantSerializer.new(Merchant.delete)
+    Invoice.where(merchant_id: params[:id]).each do |invoice|
+      InvoiceItem.where(invoice_id: invoice.id).delete_all
+      Payment.where(invoice_id: invoice.id).delete_all
+      invoice.destroy
+    end
+
+    Item.where(merchant_id: params[:id]).delete_all
+    Merchant.delete(params[:id])
   end
 
   private
