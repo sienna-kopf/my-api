@@ -116,12 +116,12 @@ RSpec.describe "Items API ", type: :request do
 
     item_merchant = JSON.parse(response.body, symbolize_names: true)
 
-    expect(item_merchant[:data].count).to eq(1)
+    expect(item_merchant.count).to eq(1)
 
-    expect(item_merchant[:data][0]).to have_key(:id)
-    expect(item_merchant[:data][0]).to have_key(:type)
-    expect(item_merchant[:data][0]).to have_key(:attributes)
+    expect(item_merchant[:data]).to have_key(:id)
+    expect(item_merchant[:data]).to have_key(:type)
+    expect(item_merchant[:data]).to have_key(:attributes)
 
-    expect(item_merchant[:data][0][:attributes]).to have_key(:name)
+    expect(item_merchant[:data][:attributes]).to have_key(:name)
   end
 end
