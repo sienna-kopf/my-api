@@ -106,24 +106,22 @@ RSpec.describe "Items API ", type: :request do
     expect(response.status).to eq(204)
   end
 
-  xit "sends a list of merchants associated with a specific item" do
+  it "sends the merchant associated with a specific item" do
     merchant = create(:merchant)
-    create(:item, merchant: merchant)
-    create(:item, merchant: merchant)
-    create(:item, merchant: merchant)
+    item = create(:item, merchant: merchant)
 
-    get "/api/v1/merchants/#{merchant.id}/items"
+    get "/api/v1/items/#{item.id}/merchant"
 
     expect(response).to be_successful
 
-    merchant_items = JSON.parse(response.body, symbolize_names: true)
+    item_merchant = JSON.parse(response.body, symbolize_names: true)
 
-    expect(merchant_items[:data].count).to eq(3)
+    expect(item_merchant[:data].count).to eq(1)
 
-    expect(merchant_items[:data][0]).to have_key(:id)
-    expect(merchant_items[:data][0]).to have_key(:type)
-    expect(merchant_items[:data][0]).to have_key(:attributes)
+    expect(item_merchant[:data][0]).to have_key(:id)
+    expect(item_merchant[:data][0]).to have_key(:type)
+    expect(item_merchant[:data][0]).to have_key(:attributes)
 
-    expect(merchant_items[:data][0][:attributes]).to have_key(:name)
+    expect(item_merchant[:data][0][:attributes]).to have_key(:name)
   end
 end
