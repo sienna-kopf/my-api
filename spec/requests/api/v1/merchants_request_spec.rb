@@ -23,22 +23,22 @@ RSpec.describe "Merchants API", type: :request do
     expect(merchants[:data][0][:attributes]).to have_key(:name)
   end
 
-  xit "can get one item by id" do
-    id =  create(:item).id
+  it "can get one merchant by id" do
+    id =  create(:merchant).id
 
-    get "/api/v1/items/#{id}"
+    get "/api/v1/merchants/#{id}"
 
     expect(response).to be_successful
 
-    item = JSON.parse(response.body, symbolize_names: true)
+    merchant = JSON.parse(response.body, symbolize_names: true)
 
-    expect(item[:data][:id]).to eq("#{id}")
+    expect(merchant[:data][:id]).to eq("#{id}")
 
-    expect(item[:data]).to have_key(:id)
-    expect(item[:data]).to have_key(:type)
-    expect(item[:data]).to have_key(:attributes)
+    expect(merchant[:data]).to have_key(:id)
+    expect(merchant[:data]).to have_key(:type)
+    expect(merchant[:data]).to have_key(:attributes)
 
-    expect(item[:data][:attributes]).to have_key(:name)
+    expect(merchant[:data][:attributes]).to have_key(:name)
   end
 
   xit "can get one item by id" do
