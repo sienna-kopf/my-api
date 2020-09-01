@@ -83,23 +83,25 @@ RSpec.describe "Merchants API", type: :request do
     expect(updated_merchant[:data][:attributes]).to have_key(:name)
   end
 
-  xit "can destroy an item" do
-    item = create(:item)
+  it "can destroy an item" do
+    merchant = create(:merchant)
 
-    expect(Item.count).to eq(1)
+    expect(Merchant.count).to eq(1)
 
-    delete "/api/v1/items/#{item.id}"
+    delete "/api/v1/merchants/#{merchant.id}"
 
     expect(response).to be_successful
 
-    expect(Item.count).to eq(0)
-    expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+    expect(Merchant.count).to eq(0)
+    expect{Merchant.find(merchant.id)}.to raise_error(ActiveRecord::RecordNotFound)
 
-    deleted_item = JSON.parse(response.body, symbolize_names: true)
+    deleted_merchant = JSON.parse(response.body, symbolize_names: true)
 
-    expect(deleted_item[:data]).to have_key(:status)
-    expect(deleted_item[:data][:status]).to eq(204)
-    expect(deleted_item[:data]).to have_key(:error)
-    expect(deleted_item[:data]).to have_key(:exception)
+    binding.pry
+
+    expect(deleted_merchant[:data]).to have_key(:status)
+    expect(deleted_merchant[:data][:status]).to eq(204)
+    expect(deleted_merchant[:data]).to have_key(:error)
+    expect(deleted_merchant[:data]).to have_key(:exception)
   end
 end

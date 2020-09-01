@@ -1,27 +1,13 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/spec/requests/api/v1/items_request_spec.rb": {
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/spec/requests/api/v1/merchants_request_spec.rb": {
         "lines": [
           1,
           null,
           1,
-          1,
-          1,
           null,
-          1,
           null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          1,
-          null,
-          1,
           null,
           null,
           1,
@@ -61,13 +47,9 @@
           null,
           null,
           1,
-          1,
           null,
           1,
           1,
-          null,
-          null,
-          null,
           null,
           null,
           null,
@@ -116,15 +98,16 @@
           1,
           null,
           1,
-          2,
+          0,
           null,
-          1,
+          0,
           null,
-          1,
-          1,
-          1,
+          0,
           null,
-          1,
+          0,
+          0,
+          0,
+          0,
           null,
           null
         ]
@@ -412,9 +395,9 @@
         "lines": [
           1,
           1,
-          8,
-          8,
-          8,
+          1,
+          1,
+          1,
           1,
           null,
           null
@@ -424,7 +407,7 @@
         "lines": [
           1,
           1,
-          9,
+          7,
           null,
           null
         ]
@@ -442,57 +425,8 @@
           null
         ]
       },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/spec/requests/api/v1/merchants_request_spec.rb": {
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/merchant.rb": {
         "lines": [
-          1,
-          null,
-          1,
-          null,
-          null,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null
-        ]
-      },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/item.rb": {
-        "lines": [
-          1,
           1,
           1,
           1,
@@ -507,16 +441,7 @@
           null
         ]
       },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/merchant.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          1,
-          null
-        ]
-      },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/controllers/api/v1/items_controller.rb": {
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/controllers/api/v1/merchants_controller.rb": {
         "lines": [
           1,
           1,
@@ -524,10 +449,6 @@
           null,
           null,
           1,
-          2,
-          null,
-          null,
-          1,
           1,
           null,
           null,
@@ -537,11 +458,13 @@
           null,
           1,
           1,
-          1,
+          null,
+          null,
           1,
           null,
           null,
           1,
+          null,
           1,
           2,
           null,
@@ -554,35 +477,15 @@
           null
         ]
       },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/serializers/item_serializer.rb": {
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/serializers/merchant_serializer.rb": {
         "lines": [
           1,
           1,
           1,
-          null
-        ]
-      },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/controllers/api/v1/merchants_controller.rb": {
-        "lines": [
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
-          null,
-          1,
-          null,
           null
         ]
       }
     },
-    "timestamp": 1598913268
+    "timestamp": 1598932627
   }
 }
