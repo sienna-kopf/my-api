@@ -7,7 +7,7 @@ RSpec.describe "Item Single Finder", type: :request do
     item_2 = Item.create!(name: "Quickdraws", description: "Technical safety eq.", unit_price: 45.50, merchant: merchant)
     item_3 = Item.create!(name: "Drawsaurus Stuffed Animal", description: "Based off the hit pictionary game", unit_price: 5.75, merchant: merchant)
 
-    get "/api/v1/items/find?name=animal"
+    get "/api/v1/items/find_all?name=stuffed"
 
     expect(response).to be_successful
 
@@ -30,13 +30,13 @@ RSpec.describe "Item Single Finder", type: :request do
     item_2 = Item.create!(name: "Quickdraws", description: "Technical safety eq.", unit_price: 5.55, merchant: merchant)
     item_3 = Item.create!(name: "Drawsaurus Stuffed Dinosaur", description: "Based off the hit pictionary game", unit_price: 5.55, merchant: merchant)
 
-    get "/api/v1/items/find?unit_price=5.55"
+    get "/api/v1/items/find_all?unit_price=5.55"
 
     expect(response).to be_successful
 
     item = JSON.parse(response.body, symbolize_names: true)
 
-    expect(item[:data].count).to have_key(3)
+    expect(item[:data].count).to eq(3)
 
     expect(item[:data][0]).to have_key(:id)
     expect(item[:data][0]).to have_key(:type)
@@ -53,13 +53,13 @@ RSpec.describe "Item Single Finder", type: :request do
     item_2 = Item.create!(name: "Quickdraws", description: "Technical safety eq.", unit_price: 5.55, merchant: merchant)
     item_3 = Item.create!(name: "Drawsaurus Stuffed Dinosaur", description: "Based off the hit pictionary game", unit_price: 5.55, merchant: merchant)
 
-    get "/api/v1/items/find?merchant_id=#{merchant.id}"
+    get "/api/v1/items/find_all?merchant_id=#{merchant.id}"
 
     expect(response).to be_successful
 
     item = JSON.parse(response.body, symbolize_names: true)
 
-    expect(item[:data].count).to have_key(2)
+    expect(item[:data].count).to eq(2)
 
     expect(item[:data][0]).to have_key(:id)
     expect(item[:data][0]).to have_key(:type)
@@ -76,7 +76,7 @@ RSpec.describe "Item Single Finder", type: :request do
     item_2 = Item.create!(name: "Quickdraws", description: "Technical safety eq.", unit_price: 45.50, merchant: merchant)
     item_3 = Item.create!(name: "Drawsaurus Stuffed Dinosaur", description: "Based off the hit pictionary game", unit_price: 5.75, merchant: merchant)
 
-    get "/api/v1/items/find?created_at=#{item_3.created_at}"
+    get "/api/v1/items/find_all?created_at=#{item_3.created_at}"
 
     expect(response).to be_successful
 
@@ -99,7 +99,7 @@ RSpec.describe "Item Single Finder", type: :request do
     item_2 = Item.create!(name: "Quickdraws", description: "Technical safety eq.", unit_price: 45.50, merchant: merchant)
     item_3 = Item.create!(name: "Drawsaurus Stuffed Dinosaur", description: "Based off the hit pictionary game", unit_price: 5.75, merchant: merchant)
 
-    get "/api/v1/items/find?updated_at=#{item_3.updated_at}"
+    get "/api/v1/items/find_all?updated_at=#{item_3.updated_at}"
 
     expect(response).to be_successful
 
