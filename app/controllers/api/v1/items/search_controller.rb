@@ -5,7 +5,8 @@ class Api::V1::Items::SearchController < ApplicationController
     if attribute == "name" || attribute == "description"
       item = Item.where("items.#{attribute} ILIKE ?", "%#{keyword}%").limit(1)
     elsif attribute == "created_at" || attribute == "updated_at"
-      item = Item.where("DATE(#{attribute}) LIKE ?", "%#{keyword}%").limit(1)
+      keyword = keyword.to_s
+      item = Item.where("DATE(#{attribute}) = ?", "#{keyword}").limit(1)
     else
       item = Item.where("#{attribute} = ?", "#{keyword}").limit(1)
     end
