@@ -46,13 +46,11 @@ RSpec.describe "Items API ", type: :request do
 
     headers = { "CONTENT_TYPE" => "application/json"}
     post "/api/v1/items", :params => {
-      item: {
         name: "Toy Plane",
         description: "Fly your own airplane",
         unit_price: 22.35,
         merchant_id: merchant_id
         }
-      }
 
     expect(response).to be_successful
 
@@ -70,11 +68,7 @@ RSpec.describe "Items API ", type: :request do
     id = create(:item).id
 
     headers = { "CONTENT_TYPE" => "application/json"}
-    patch "/api/v1/items/#{id}", :params => {
-      item: {
-        name: "Tennis Ball"
-        }
-      }
+    patch "/api/v1/items/#{id}", :params => {name: "Tennis Ball"}
 
     expect(response).to be_successful
     item = Item.find_by(id: id)
@@ -121,13 +115,7 @@ RSpec.describe "Items API ", type: :request do
     expect(item_merchant[:data]).to have_key(:id)
     expect(item_merchant[:data]).to have_key(:type)
     expect(item_merchant[:data]).to have_key(:attributes)
-    expect(item_merchant[:data]).to have_key(:relationships)
 
     expect(item_merchant[:data][:attributes]).to have_key(:name)
-
-    expect(item_merchant[:data][:relationships]).to have_key(:items)
-    expect(item_merchant[:data][:relationships][:items][:data].count).to eq(1)
-    expect(item_merchant[:data][:relationships][:items][:data][0]).to have_key(:id)
-    expect(item_merchant[:data][:relationships][:items][:data][0]).to have_key(:type)
   end
 end

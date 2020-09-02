@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
       get "/merchants/:id/items", to: "merchants#items"
       get "/items/:id/merchant", to: "items#merchant"
+
+      get "/items/find", to: "items#find"
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

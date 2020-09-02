@@ -7,7 +7,7 @@ RSpec.describe "Single Finders", type: :request do
     item_2 = Item.create!(name: "Quickdraws", description: "Technical safety eq.", unit_price: 45.50, merchant: merchant)
     item_3 = Item.create!(name: "Drawsaurus Stuffed Animal", description: "Based off the hit pictionary game", unit_price: 5.75, merchant: merchant)
 
-    get "/api/v1/items/find?name=quick"
+    get "/api/v1/items/find"
 
     expect(response).to be_successful
 
@@ -28,7 +28,7 @@ RSpec.describe "Single Finders", type: :request do
     item_2 = Item.create!(name: "Quickdraws", description: "Technical safety eq.", unit_price: 45.50, merchant: merchant)
     item_3 = Item.create!(name: "Drawsaurus Stuffed Dinosaur", description: "Based off the hit pictionary game", unit_price: 5.75, merchant: merchant)
 
-    get "/api/v1/items/find?name=Dinosaur"
+    get "/api/v1/items/find"
 
     expect(response).to be_successful
 
