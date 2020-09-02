@@ -38,14 +38,11 @@ RSpec.describe "Merchants API", type: :request do
     expect(merchant[:data][:attributes]).to have_key(:name)
   end
 
-  it "can create a new item" do
-
+  it "can create a new merchant" do
     headers = { "CONTENT_TYPE" => "application/json"}
-    post "/api/v1/merchants", :params => {
-      merchant: {
-        name: "Hello Kitty Kingdom"
-        }
-      }
+    merchant_params = { name: "Toy Plane Emporium" }
+
+    post "/api/v1/merchants", params: JSON.generate(merchant_params), headers: headers
 
     expect(response).to be_successful
 
