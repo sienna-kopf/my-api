@@ -6,13 +6,13 @@ RSpec.describe "Merchant Multi Finder", type: :request do
     merchant_2 = Merchant.create!(name: "Coke Cola")
     merchant_3 = Merchant.create!(name: "Pesi Cola")
 
-    get "/api/v1/merchants/find?name=cola"
+    get "/api/v1/merchants/find_all?name=cola"
 
     expect(response).to be_successful
 
     item = JSON.parse(response.body, symbolize_names: true)
 
-    expect(item[:data].count).to eq(:2)
+    expect(item[:data].count).to eq(2)
 
     expect(item[:data][0]).to have_key(:id)
     expect(item[:data][0]).to have_key(:type)
