@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Single Finders", type: :request do
+RSpec.describe "Item Single Finder", type: :request do
   it "can retrieve a single item based on an attribute search part of word" do
     merchant = create(:merchant)
     item_1 = create(:item, merchant: merchant)
