@@ -19,6 +19,7 @@ RSpec.describe "Items API ", type: :request do
     expect(items[:data][0][:attributes]).to have_key(:name)
     expect(items[:data][0][:attributes]).to have_key(:description)
     expect(items[:data][0][:attributes]).to have_key(:unit_price)
+    expect(items[:data][0][:attributes]).to have_key(:merchant_id)
   end
 
   it "can get one item by id" do
@@ -39,6 +40,7 @@ RSpec.describe "Items API ", type: :request do
     expect(item[:data][:attributes]).to have_key(:name)
     expect(item[:data][:attributes]).to have_key(:description)
     expect(item[:data][:attributes]).to have_key(:unit_price)
+    expect(item[:data][:attributes]).to have_key(:merchant_id)
   end
 
   it "can create a new item" do
@@ -62,6 +64,7 @@ RSpec.describe "Items API ", type: :request do
     expect(new_item[:data][:attributes]).to have_key(:name)
     expect(new_item[:data][:attributes]).to have_key(:description)
     expect(new_item[:data][:attributes]).to have_key(:unit_price)
+    expect(new_item[:data][:attributes]).to have_key(:merchant_id)
   end
 
   it "can update an existing item" do
@@ -83,6 +86,7 @@ RSpec.describe "Items API ", type: :request do
     expect(updated_item[:data][:attributes]).to have_key(:name)
     expect(updated_item[:data][:attributes]).to have_key(:description)
     expect(updated_item[:data][:attributes]).to have_key(:unit_price)
+    expect(updated_item[:data][:attributes]).to have_key(:merchant_id)
   end
 
   it "can destroy an item" do
