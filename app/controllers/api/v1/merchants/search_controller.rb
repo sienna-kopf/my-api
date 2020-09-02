@@ -1,5 +1,5 @@
 class Api::V1::Merchants::SearchController < ApplicationController
-  def show
+  def index
     attribute = params.keys.first
     keyword = params[attribute]
     if attribute == "name"
