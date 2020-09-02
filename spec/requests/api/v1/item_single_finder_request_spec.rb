@@ -13,13 +13,13 @@ RSpec.describe "Item Single Finder", type: :request do
 
     item = JSON.parse(response.body, symbolize_names: true)
 
-    expect(item[:data][0]).to have_key(:id)
-    expect(item[:data][0]).to have_key(:type)
-    expect(item[:data][0]).to have_key(:attributes)
+    expect(item[:data]).to have_key(:id)
+    expect(item[:data]).to have_key(:type)
+    expect(item[:data]).to have_key(:attributes)
 
-    expect(item[:data][0][:attributes]).to have_key(:name)
-    expect(item[:data][0][:attributes]).to have_key(:description)
-    expect(item[:data][0][:attributes]).to have_key(:unit_price)
+    expect(item[:data][:attributes]).to have_key(:name)
+    expect(item[:data][:attributes]).to have_key(:description)
+    expect(item[:data][:attributes]).to have_key(:unit_price)
   end
 
   it "can retrieve a single item based on an attribute search full word" do
@@ -34,13 +34,13 @@ RSpec.describe "Item Single Finder", type: :request do
 
     item = JSON.parse(response.body, symbolize_names: true)
 
-    expect(item[:data][0]).to have_key(:id)
-    expect(item[:data][0]).to have_key(:type)
-    expect(item[:data][0]).to have_key(:attributes)
+    expect(item[:data]).to have_key(:id)
+    expect(item[:data]).to have_key(:type)
+    expect(item[:data]).to have_key(:attributes)
 
-    expect(item[:data][0][:attributes]).to have_key(:name)
-    expect(item[:data][0][:attributes]).to have_key(:description)
-    expect(item[:data][0][:attributes]).to have_key(:unit_price)
+    expect(item[:data][:attributes]).to have_key(:name)
+    expect(item[:data][:attributes]).to have_key(:description)
+    expect(item[:data][:attributes]).to have_key(:unit_price)
   end
 
   it "can retrieve a single item case-insensitve" do
@@ -55,13 +55,13 @@ RSpec.describe "Item Single Finder", type: :request do
 
     item = JSON.parse(response.body, symbolize_names: true)
 
-    expect(item[:data][0]).to have_key(:id)
-    expect(item[:data][0]).to have_key(:type)
-    expect(item[:data][0]).to have_key(:attributes)
+    expect(item[:data]).to have_key(:id)
+    expect(item[:data]).to have_key(:type)
+    expect(item[:data]).to have_key(:attributes)
 
-    expect(item[:data][0][:attributes]).to have_key(:name)
-    expect(item[:data][0][:attributes]).to have_key(:description)
-    expect(item[:data][0][:attributes]).to have_key(:unit_price)
+    expect(item[:data][:attributes]).to have_key(:name)
+    expect(item[:data][:attributes]).to have_key(:description)
+    expect(item[:data][:attributes]).to have_key(:unit_price)
   end
 
   it "can retrieve a single item based off of unit price" do
@@ -76,13 +76,13 @@ RSpec.describe "Item Single Finder", type: :request do
 
     item = JSON.parse(response.body, symbolize_names: true)
 
-    expect(item[:data][0]).to have_key(:id)
-    expect(item[:data][0]).to have_key(:type)
-    expect(item[:data][0]).to have_key(:attributes)
+    expect(item[:data]).to have_key(:id)
+    expect(item[:data]).to have_key(:type)
+    expect(item[:data]).to have_key(:attributes)
 
-    expect(item[:data][0][:attributes]).to have_key(:name)
-    expect(item[:data][0][:attributes]).to have_key(:description)
-    expect(item[:data][0][:attributes]).to have_key(:unit_price)
+    expect(item[:data][:attributes]).to have_key(:name)
+    expect(item[:data][:attributes]).to have_key(:description)
+    expect(item[:data][:attributes]).to have_key(:unit_price)
   end
 
   it "can retrieve a single item based off of created_at date" do
@@ -97,13 +97,13 @@ RSpec.describe "Item Single Finder", type: :request do
 
     item = JSON.parse(response.body, symbolize_names: true)
 
-    expect(item[:data][0]).to have_key(:id)
-    expect(item[:data][0]).to have_key(:type)
-    expect(item[:data][0]).to have_key(:attributes)
+    expect(item[:data]).to have_key(:id)
+    expect(item[:data]).to have_key(:type)
+    expect(item[:data]).to have_key(:attributes)
 
-    expect(item[:data][0][:attributes]).to have_key(:name)
-    expect(item[:data][0][:attributes]).to have_key(:description)
-    expect(item[:data][0][:attributes]).to have_key(:unit_price)
+    expect(item[:data][:attributes]).to have_key(:name)
+    expect(item[:data][:attributes]).to have_key(:description)
+    expect(item[:data][:attributes]).to have_key(:unit_price)
   end
 
   it "can retrieve a single item based off of updated_at date" do
@@ -118,12 +118,12 @@ RSpec.describe "Item Single Finder", type: :request do
 
     item = JSON.parse(response.body, symbolize_names: true)
 
-    expect(item[:data][0]).to have_key(:id)
-    expect(item[:data][0]).to have_key(:type)
-    expect(item[:data][0]).to have_key(:attributes)
+    expect(item[:data]).to have_key(:id)
+    expect(item[:data]).to have_key(:type)
+    expect(item[:data]).to have_key(:attributes)
 
-    expect(item[:data][0][:attributes]).to have_key(:name)
-    expect(item[:data][0][:attributes]).to have_key(:description)
-    expect(item[:data][0][:attributes]).to have_key(:unit_price)
+    expect(item[:data][:attributes]).to have_key(:name)
+    expect(item[:data][:attributes]).to have_key(:description)
+    expect(item[:data][:attributes]).to have_key(:unit_price)
   end
 end

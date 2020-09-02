@@ -18,6 +18,7 @@ namespace :seed_from_csv do
       Customer.create!(row)
     end
     puts("Customers imported")
+    ActiveRecord::Base.connection.reset_pk_sequence!('customers')
   end
 
   desc "Seed merchants"
@@ -30,6 +31,7 @@ namespace :seed_from_csv do
       Merchant.create!(row)
     end
     puts("Merchants imported")
+    ActiveRecord::Base.connection.reset_pk_sequence!('merchants')
   end
 
   desc "Seed items"
@@ -44,6 +46,7 @@ namespace :seed_from_csv do
       Item.create!(row)
     end
     puts("Items imported")
+    ActiveRecord::Base.connection.reset_pk_sequence!('items')
   end
 
   desc "Seed invoices"
@@ -58,6 +61,7 @@ namespace :seed_from_csv do
       Invoice.create!(row)
     end
     puts("Invoices imported")
+    ActiveRecord::Base.connection.reset_pk_sequence!('invoices')
   end
 
 
@@ -75,10 +79,12 @@ namespace :seed_from_csv do
       InvoiceItem.create!(row)
     end
     puts("Invoice Items imported")
+    ActiveRecord::Base.connection.reset_pk_sequence!('invoice_items')
   end
 
   desc "Seed transactions"
   task transactions: :environment do
+
     file = "db/csvs/transactions.csv"
     transactions_csv = CSV.foreach(file, headers: true, header_converters: :symbol).map(&:to_h)
 
@@ -88,6 +94,7 @@ namespace :seed_from_csv do
       Payment.create!(row)
     end
     puts("Transactions imported")
+    ActiveRecord::Base.connection.reset_pk_sequence!('transactions')
   end
 
   task :all => [:rebuild, :merchants, :customers, :items, :invoices, :invoice_items, :transactions ]

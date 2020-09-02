@@ -3,15 +3,17 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :items do
         get "/find", to: "search#show"
+        get "/find_all", to: "search#index"
+        get "/:id/merchant", to: "merchants#index"
       end
       resources :items, only: [:index, :show, :create, :update, :destroy]
-      get "/items/:id/merchant", to: "items#merchant"
 
       namespace :merchants do
         get "/find", to: "search#show"
-      end 
+        get "/find_all", to: "search#index"
+        get "/:id/items", to: "items#index", as: :merchant_items
+      end
       resources :merchants, only: [:index, :show, :create, :update, :destroy]
-      get "/merchants/:id/items", to: "merchants#items"
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

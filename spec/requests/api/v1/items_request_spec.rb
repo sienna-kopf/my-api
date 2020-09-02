@@ -47,12 +47,14 @@ RSpec.describe "Items API ", type: :request do
     merchant_id = create(:merchant).id
 
     headers = { "CONTENT_TYPE" => "application/json"}
-    post "/api/v1/items", :params => {
+    item_params = {
         name: "Toy Plane",
         description: "Fly your own airplane",
         unit_price: 22.35,
         merchant_id: merchant_id
-        }
+      }
+
+    post "/api/v1/items", params: JSON.generate(item_params), headers: headers
 
     expect(response).to be_successful
 
