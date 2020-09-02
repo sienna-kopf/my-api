@@ -4,4 +4,8 @@ class RevenueFacade
 
     Revenue.new(result)
   end
+
+  def self.merchants_by_revenue(quantity)
+    Merchant.joins(invoices: [:invoice_items, :payments]).select("merchants.*, sum(invoice_items.quantity * invoice_items.unit_price) as revenue").where("payments.result='success' AND invoices.status='shipped'").group(:id).order("revenue desc").limit(quantity)
+  end
 end
