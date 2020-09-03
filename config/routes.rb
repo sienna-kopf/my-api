@@ -17,6 +17,8 @@ Rails.application.routes.draw do
         get "/most_items", to: "items#most_items"
       end
       resources :merchants, only: [:index, :show, :create, :update, :destroy]
+
+      get "/revenue", to: "revenue#show"
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
