@@ -76,6 +76,18 @@ RSpec.describe "Merchants API", type: :request do
   it "can destroy an item" do
     merchant = create(:merchant)
 
+    customer = create(:customer)
+    invoice = create(:invoice, merchant: merchant)
+    payment = create(:payment, invoice: invoice)
+
+    item_1 = create(:item, merchant: merchant)
+    item_2 = Item.create!(name: "Quickdraws", description: "Technical safety eq.", unit_price: 45.50, merchant: merchant)
+    item_3 = Item.create!(name: "Drawsaurus Stuffed Animal", description: "Based off the hit pictionary game", unit_price: 5.00, merchant: merchant)
+
+    invoice_item_1 = create(:invoice_item, invoice: invoice, item: item_1)
+    invoice_item_2 = InvoiceItem.create!(quantity: 1, unit_price: 45.50, item_id: item_2.id, invoice_id: invoice.id)
+    invoice_item_3 = InvoiceItem.create!(quantity: 5, unit_price: 5.00, item_id: item_3.id, invoice_id: invoice.id)
+
     expect(Merchant.count).to eq(1)
 
     delete "/api/v1/merchants/#{merchant.id}"
@@ -84,6 +96,10 @@ RSpec.describe "Merchants API", type: :request do
 
     expect(Merchant.count).to eq(0)
     expect{Merchant.find(merchant.id)}.to raise_error(ActiveRecord::RecordNotFound)
+    expect{Invoice.find(invoice.id)}.to raise_error(ActiveRecord::RecordNotFound)
+    expect{InvoiceItem.find(invoice_item_1.id)}.to raise_error(ActiveRecord::RecordNotFound)
+    expect{InvoiceItem.find(invoice_item_2.id)}.to raise_error(ActiveRecord::RecordNotFound)
+    expect{InvoiceItem.find(invoice_item_3.id)}.to raise_error(ActiveRecord::RecordNotFound)
 
     expect(response.status).to eq(204)
   end
