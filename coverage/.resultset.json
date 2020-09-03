@@ -1,18 +1,120 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/spec/models/customer_spec.rb": {
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/spec/requests/api/v1/buisness_intelligence_request_spec.rb": {
         "lines": [
           1,
           null,
           1,
           1,
-          2,
-          2,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
           null,
           null,
           1,
-          2,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
           null,
           null
         ]
@@ -289,7 +391,7 @@
           null,
           null,
           1,
-          1,
+          2,
           null,
           null,
           null,
@@ -302,8 +404,8 @@
         "lines": [
           1,
           1,
-          1,
-          1,
+          11,
+          11,
           null,
           null
         ]
@@ -312,8 +414,8 @@
         "lines": [
           1,
           1,
-          1,
-          1,
+          4,
+          4,
           1,
           1,
           null,
@@ -324,7 +426,7 @@
         "lines": [
           1,
           1,
-          1,
+          8,
           1,
           1,
           null,
@@ -335,9 +437,9 @@
         "lines": [
           1,
           1,
-          1,
-          1,
-          1,
+          4,
+          4,
+          4,
           1,
           null,
           null
@@ -347,7 +449,7 @@
         "lines": [
           1,
           1,
-          1,
+          4,
           null,
           null
         ]
@@ -356,8 +458,8 @@
         "lines": [
           1,
           1,
-          1,
-          1,
+          8,
+          8,
           1,
           null,
           null
@@ -381,6 +483,7 @@
           1,
           1,
           1,
+          1,
           null,
           1,
           null,
@@ -389,8 +492,11 @@
           null
         ]
       },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/customer.rb": {
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/merchant.rb": {
         "lines": [
+          1,
+          1,
+          1,
           1,
           1,
           1,
@@ -404,48 +510,11 @@
           null
         ]
       },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/spec/models/invoice_item_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          1,
-          2,
-          2,
-          null,
-          null,
-          1,
-          2,
-          2,
-          null,
-          null
-        ]
-      },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/invoice_item.rb": {
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/customer.rb": {
         "lines": [
           1,
           1,
           1,
-          1,
-          null
-        ]
-      },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/spec/models/invoice_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          1,
-          2,
-          null,
-          null,
-          1,
-          2,
-          2,
-          2,
-          2,
-          2,
-          null,
           null
         ]
       },
@@ -462,22 +531,11 @@
           null
         ]
       },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/spec/models/item_spec.rb": {
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/payment.rb": {
         "lines": [
           1,
-          null,
           1,
           1,
-          2,
-          2,
-          2,
-          null,
-          null,
-          1,
-          2,
-          2,
-          2,
-          null,
           null
         ]
       },
@@ -491,28 +549,8 @@
           null
         ]
       },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/spec/models/merchant_spec.rb": {
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/invoice_item.rb": {
         "lines": [
-          1,
-          null,
-          1,
-          1,
-          2,
-          null,
-          null,
-          1,
-          2,
-          2,
-          2,
-          2,
-          null,
-          null
-        ]
-      },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/merchant.rb": {
-        "lines": [
-          1,
-          1,
           1,
           1,
           1,
@@ -520,31 +558,97 @@
           null
         ]
       },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/spec/models/payment_spec.rb": {
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/controllers/api/v1/merchants/revenue_controller.rb": {
         "lines": [
           1,
+          1,
+          1,
+          null,
+          1,
+          null,
           null,
           1,
           1,
-          2,
-          2,
-          null,
           null,
           1,
-          2,
           null,
           null
         ]
       },
-      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/models/payment.rb": {
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/controllers/application_controller.rb": {
+        "lines": [
+          1,
+          null
+        ]
+      },
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/serializers/revenue_serializer.rb": {
         "lines": [
           1,
           1,
           1,
+          null
+        ]
+      },
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/facades/revenue_facade.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/poros/revenue.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/serializers/merchant_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/controllers/api/v1/merchants/items_controller.rb": {
+        "lines": [
+          1,
+          1,
+          0,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/cece/turing/3mod/projects/rails_engine/my_api/app/facades/item_facade.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null,
           null
         ]
       }
     },
-    "timestamp": 1599085945
+    "timestamp": 1599100382
   }
 }
