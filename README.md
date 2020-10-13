@@ -1,6 +1,6 @@
 # my-api
 ## Overview:
-Tasked with building out ReST, single-finders, multi-finders, and buisness intelligence endpoints for a simple e-commerce site.
+Tasked with building out ReST, relational, single-finders, multi-finders, and buisness intelligence endpoints for a simple e-commerce site.
 - Ruby on Rails API
 - Responses serialized adherent to JSON 1.0 industry standards
 - Test Driven Development with ~100% coverage in RSpec Test Suite
