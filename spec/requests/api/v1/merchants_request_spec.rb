@@ -76,13 +76,19 @@ RSpec.describe "Merchants API", type: :request do
   it "can destroy an item" do
     merchant = create(:merchant)
 
-    customer = create(:customer)
+    create(:customer)
     invoice = create(:invoice, merchant: merchant)
-    payment = create(:payment, invoice: invoice)
+    create(:payment, invoice: invoice)
 
     item_1 = create(:item, merchant: merchant)
-    item_2 = Item.create!(name: "Quickdraws", description: "Technical safety eq.", unit_price: 45.50, merchant: merchant)
-    item_3 = Item.create!(name: "Drawsaurus Stuffed Animal", description: "Based off the hit pictionary game", unit_price: 5.00, merchant: merchant)
+    item_2 = Item.create!(name: "Quickdraws",
+                          description: "Technical safety eq.",
+                          unit_price: 45.50,
+                          merchant: merchant)
+    item_3 = Item.create!(name: "Drawsaurus Stuffed Animal",
+                          description: "Based off the hit pictionary game",
+                          unit_price: 5.00,
+                          merchant: merchant)
 
     invoice_item_1 = create(:invoice_item, invoice: invoice, item: item_1)
     invoice_item_2 = InvoiceItem.create!(quantity: 1, unit_price: 45.50, item_id: item_2.id, invoice_id: invoice.id)

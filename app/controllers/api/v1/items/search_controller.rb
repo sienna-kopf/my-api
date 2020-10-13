@@ -1,6 +1,8 @@
 class Api::V1::Items::SearchController < ApplicationController
   def show
     attribute = params.keys.first
+    # attribute = request.query_parameters.first
+
     keyword = params[attribute]
     if attribute == "name" || attribute == "description"
       item = Item.find_by("items.#{attribute} ILIKE ?", "%#{keyword}%")

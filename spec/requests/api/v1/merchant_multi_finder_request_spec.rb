@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "Merchant Multi Finder", type: :request do
   it "can retrieve more than one merchant based on name search case insensitve" do
-    merchant_1 = Merchant.create!(name: "Guayaki")
-    merchant_2 = Merchant.create!(name: "Coke Cola")
-    merchant_3 = Merchant.create!(name: "Pesi Cola")
+    Merchant.create!(name: "Guayaki")
+    Merchant.create!(name: "Coke Cola")
+    Merchant.create!(name: "Pesi Cola")
 
     get "/api/v1/merchants/find_all?name=cola"
 

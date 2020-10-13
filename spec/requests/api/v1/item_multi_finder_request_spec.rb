@@ -49,9 +49,15 @@ RSpec.describe "Item Single Finder", type: :request do
 
   it "can retrieve more than 1 item based off of shared merchant_id" do
     merchant = create(:merchant)
-    item_1 = create(:item)
-    item_2 = Item.create!(name: "Quickdraws", description: "Technical safety eq.", unit_price: 5.55, merchant: merchant)
-    item_3 = Item.create!(name: "Drawsaurus Stuffed Dinosaur", description: "Based off the hit pictionary game", unit_price: 5.55, merchant: merchant)
+    create(:item)
+    Item.create!(name: "Quickdraws",
+                 description: "Technical safety eq.",
+                 unit_price: 5.55,
+                 merchant: merchant)
+    Item.create!(name: "Drawsaurus Stuffed Dinosaur",
+                 description: "Based off the hit pictionary game",
+                 unit_price: 5.55,
+                 merchant: merchant)
 
     get "/api/v1/items/find_all?merchant_id=#{merchant.id}"
 

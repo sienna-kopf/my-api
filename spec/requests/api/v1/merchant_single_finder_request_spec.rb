@@ -38,9 +38,9 @@ RSpec.describe "Merchant Single Finder", type: :request do
   end
 
   it "can retrieve a single merchant case-insensitve" do
-    merchant_1 = Merchant.create!(name: "Guayaki")
-    merchant_2 = Merchant.create!(name: "Coke Cola")
-    merchant_3 = Merchant.create!(name: "Pesi Cola")
+    Merchant.create!(name: "Guayaki")
+    Merchant.create!(name: "Coke Cola")
+    Merchant.create!(name: "Pesi Cola")
 
     get "/api/v1/merchants/find?name=cola"
 
