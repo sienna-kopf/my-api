@@ -80,4 +80,70 @@ This can be demonstrated by establishing that a `merchant` has many items throug
 Then, when that merchant is deleted, a search for any of the items displayed under the merchant items endpoint display a 204 no content error. The same is true for other associated objects such as `invoices`, `payments`, and `invoiceItems`:
 ![Screen Shot 2020-10-12 at 10 55 15 PM](https://user-images.githubusercontent.com/62857073/95817195-20f2fb00-0cde-11eb-83d9-4288cb0d2ea5.png)
 
+#### Item Single Finder (name) 
+To run the `items/find` item single-finder endpoint, the URL in your API platform would look like `http://localhost:3000/api/v1/items/find` with the request method type set to `GET`. A query parameter should be included based on the attributes of the resource, for item name, description, unit_price, merchant_id, or created_at / updated_at date. This parameter would look something like "name=distinct" or "unit_price=42.91". Name and description are case insensitive character inclusion searches so if the name of an item is "Item Distinctio" a query for "Distinctio", "distinctio", "distinct" etc will all work. `unit_price`, `created_at` and `updated_at` dates, and `merchant_id` are all exact finders, and much be matched exactly for an appropriate response. In Postman, the setup for this endpoint might look something like:
+![Screen Shot 2020-10-12 at 11 15 16 PM](https://user-images.githubusercontent.com/62857073/95818319-d3c45880-0ce0-11eb-8fa0-6354404a05fc.png)
+
+The response for this example is a JSON 1.0 standard display of a single item in the database that matches the search. In this example, the response looks like:
+![Screen Shot 2020-10-12 at 11 16 49 PM](https://user-images.githubusercontent.com/62857073/95818402-05d5ba80-0ce1-11eb-8ac9-7eaa2eb72138.png)
+
+#### Merchant Multi-Finder (name) 
+To run the `merchants/find_all` merchant multi-finder endpoint, the URL in your API platform would look like `http://localhost:3000/api/v1/merchants/find_all` with the request method type set to `GET`. A query parameter should be included based on the attributes of the resource, for merchants the searchable attributes are name and created_at/updated_at date. This parameter would look something like "name=sons". Name is a case insensitive character inclusion search so if the name of an merchant is "Willms and Sons" a query for "Sons", "sons", "son" etc will all work. `created_at` and `updated_at` dates are exact finders, and much be matched exactly for an appropriate response. In Postman, the setup for this endpoint might look something like:
+![Screen Shot 2020-10-12 at 11 20 49 PM](https://user-images.githubusercontent.com/62857073/95818682-aa57fc80-0ce1-11eb-9292-a9aa7ea3cf71.png)
+
+The response for this example is a JSON 1.0 standard display of all merchants in the database that match the search. In this example, a sample of the response looks like:
+![Screen Shot 2020-10-12 at 11 21 26 PM](https://user-images.githubusercontent.com/62857073/95818691-ae841a00-0ce1-11eb-9244-8df74ae17c72.png)
+
+### Buisness Intelligence Endpoints 
+#### Merchant Total Revenue 
+To run the `merchants/:id/revenue` merchant revenue endpoint, the URL in your API platform would look like `http://localhost:3000/api/v1/merchants/:id/revenue` with the request method type set to `GET`. The path varible `:id` should be set to the id of a merchant in the database. In Postman, the setup for this endpoint looks like:
+![Screen Shot 2020-10-12 at 11 24 17 PM](https://user-images.githubusercontent.com/62857073/95818853-10448400-0ce2-11eb-9722-a6473aca5498.png)
+
+The response for this endpoint is a JSON 1.0 standard display of all of the revenue for that particular merchant. In this example, the repsonse looks like:
+![Screen Shot 2020-10-12 at 11 25 33 PM](https://user-images.githubusercontent.com/62857073/95818946-3e29c880-0ce2-11eb-861a-0e34b69198b8.png)
+
+The ActiveRecord Query required for this endpoint involved joining a merchants `invoices` through the `invoiceItems` table all the way to `payments` in order to select the aggregate revenue of only successfully paid for and shipped items. The method that handles this ActiveRecord query and creation of a Revenue object to be serialized looks like: 
+![Screen Shot 2020-10-12 at 11 26 55 PM](https://user-images.githubusercontent.com/62857073/95819215-b7292000-0ce2-11eb-9bc6-fdcd91df89dc.png)
+
+#### Merchants with Most Revenue 
+To run the `merchants/most_revenue` merchants with most revenue endpoint, the URL in your API platform would look like `http://localhost:3000/api/v1/merchants/most_revenue` with the request method type set to `GET`. The query parameter `quantity` should be set to the number of merchants desired in the return -- for example "quantity=2". In Postman, the setup for this endpoint looks like:
+![Screen Shot 2020-10-12 at 11 31 35 PM](https://user-images.githubusercontent.com/62857073/95819416-30c10e00-0ce3-11eb-804f-f50a3671e5f9.png)
+
+The response for this endpoint is a JSON 1.0 standard display of the top x merchants by total revenue. In this example, the repsonse looks like:
+![Screen Shot 2020-10-12 at 11 32 21 PM](https://user-images.githubusercontent.com/62857073/95819422-31f23b00-0ce3-11eb-98a0-e448903be353.png)
+
+The ActiveRecord Query required for this endpoint involved joining a merchants `invoices` through the `invoiceItems` table all the way to `payments` in order to select the merchants data along side aggregate revenue of only successfully paid for and shipped items. The list of merchants was then limited by the `quantity` query param. The method that handles this ActiveRecord query looks like: 
+![Screen Shot 2020-10-12 at 11 33 05 PM](https://user-images.githubusercontent.com/62857073/95819461-4afaec00-0ce3-11eb-82b2-cd574c2190b9.png)
+
+#### Merchants with Most Items 
+To run the `merchants/most_items` merchants with most items endpoint, the URL in your API platform would look like `http://localhost:3000/api/v1/merchants/most_items` with the request method type set to `GET`. The query parameter `quantity` should be set to the number of merchants desired in the return -- for example "quantity=2". In Postman, the setup for this endpoint looks like:
+![Screen Shot 2020-10-12 at 11 36 12 PM](https://user-images.githubusercontent.com/62857073/95819653-c197e980-0ce3-11eb-8b5d-b923da09e262.png)
+
+The response for this endpoint is a JSON 1.0 standard display of the top x merchants by item count. In this example, the repsonse looks like:
+![Screen Shot 2020-10-12 at 11 36 27 PM](https://user-images.githubusercontent.com/62857073/95819659-c361ad00-0ce3-11eb-8202-b0d0ab7e6fdb.png)
+
+The ActiveRecord Query required for this endpoint involved joining a merchants `invoices` through the `invoiceItems` table all the way to `payments` in order to select the merchants data along side the aggregate total invoiceItems of only successful payments for and shipped invoices. The list of merchants was then limited by the `quantity` query param. The method that handles this ActiveRecord query looks like: 
+![Screen Shot 2020-10-12 at 11 35 29 PM](https://user-images.githubusercontent.com/62857073/95819600-a1682a80-0ce3-11eb-9296-ab8892c2a825.png)
+
+### Screen Cast of all Endpoints:
+
+Below a screen cast is attached running through all the endpoints of the project:
+[]()
+
+## Tools:
+- FastJsonAPI
+- Faker
+- Shoulda-Matchers
+- Factory Bot Rails
+- RSpec
+- Pry
+- SimpleCov
+- PostgreSQL
+
+## Authors:
+
+[Sienna Kopf](https://github.com/sienna-kopf)
+
+
+
 
