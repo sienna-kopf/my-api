@@ -6,6 +6,8 @@ Tasked with building out ReST, relational, single-finders, multi-finders, and bu
 - Test Driven Development with ~100% coverage in RSpec Test Suite
 - Focus on MVC design principals and ReST
 
+#### [Project Requirements](https://backend.turing.io/module3/projects/rails_engine/requirements)
+
 ## Learning Goals: 
 - Expose an API
 - Use serializers to format JSON responses
@@ -122,7 +124,7 @@ To run the `merchants/most_items` merchants with most items endpoint, the URL in
 The response for this endpoint is a JSON 1.0 standard display of the top x merchants by item count. In this example, the repsonse looks like:
 ![Screen Shot 2020-10-12 at 11 36 27 PM](https://user-images.githubusercontent.com/62857073/95819659-c361ad00-0ce3-11eb-8202-b0d0ab7e6fdb.png)
 
-The ActiveRecord Query required for this endpoint involved joining a merchants `invoices` through the `invoiceItems` table all the way to `payments` in order to select the merchants data along side the aggregate total invoiceItems of only successful payments for and shipped invoices. The list of merchants was then limited by the `quantity` query param. The method that handles this ActiveRecord query looks like: 
+The ActiveRecord Query required for this endpoint involved joining a merchants `invoices` through the `invoiceItems` table all the way to `payments` in order to select the merchants data along side the aggregate total invoiceItems of only successful payments for and shipped invoices. The list of merchants was then limited by the `quantity` query param. The method that handles this ActiveRecord query looks like: </br>
 ![Screen Shot 2020-10-12 at 11 35 29 PM](https://user-images.githubusercontent.com/62857073/95819600-a1682a80-0ce3-11eb-9296-ab8892c2a825.png)
 
 ### Screen Cast of all Endpoints:
