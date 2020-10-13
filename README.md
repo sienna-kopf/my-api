@@ -128,7 +128,7 @@ The ActiveRecord Query required for this endpoint involved joining a merchants `
 ### Screen Cast of all Endpoints:
 
 Below a screen cast is attached running through all the endpoints of the project:
-[]()
+[<img width="1077" alt="Screen Shot 2020-10-12 at 11 47 26 PM" src="https://user-images.githubusercontent.com/62857073/95820424-4d5e4580-0ce5-11eb-96bb-e81e4d3c7805.png">](https://vimeo.com/user124948662/review/467615357/4883298a4a)
 
 ## Tools:
 - FastJsonAPI
@@ -143,7 +143,3 @@ Below a screen cast is attached running through all the endpoints of the project
 ## Authors:
 
 [Sienna Kopf](https://github.com/sienna-kopf)
-
-
-
-
